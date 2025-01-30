@@ -24,10 +24,28 @@ collections:
             }
           - { name: 'title', label: 'Title', widget: 'string' }
           - {
+                label: 'Author',
+                name: 'author',
+                widget: 'string',
+                default: 'Hobbies Hub',
+            }
+          - {
                 name: 'date',
                 label: 'Publishing Date',
                 widget: 'datetime',
                 date_format: 'YYYY-MM-DD',
             }
-          - { name: 'thumbnail', label: 'Featured Image', widget: 'image' }
+          - {
+                label: 'Featured? (Choose to make featured)',
+                name: 'is_featured',
+                widget: 'boolean',
+                default: false,
+            }
+          - {
+                name: 'featured_img',
+                label: 'Featured Image',
+                widget: 'image',
+                allow_multiple: false,
+                choose_url:false,
+            }
           - { name: 'body', label: 'Body', widget: 'markdown' }

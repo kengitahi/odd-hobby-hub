@@ -40,12 +40,8 @@ export default async function Home() {
 					Latest Post
 				</h3>
 				<div className=' grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
-					{/* {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item: any) => (
-						<PostCard key={item} />
-					))} */}
-
 					{posts.map((post: any) => (
-						<PostCard key={post.slug}  post={post} />
+						<PostCard key={post.slug} post={post} />
 					))}
 				</div>
 				<div className='flex items-center justify-center w-full mt-8'>

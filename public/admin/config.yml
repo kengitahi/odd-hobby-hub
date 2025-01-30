@@ -26,8 +26,9 @@ collections:
           - {
                 label: 'Author',
                 name: 'author',
-                widget: 'string',
-                default: 'Hobbies Hub',
+                widget: 'select',
+                options: ['Hobbies Hub'],
+                default: ['Hobbies Hub'],
             }
           - {
                 name: 'date',
@@ -47,5 +48,6 @@ collections:
                 widget: 'image',
                 allow_multiple: false,
                 choose_url:false,
+                default: '/uploads/image-not-found.jpg',
             }
           - { name: 'body', label: 'Body', widget: 'markdown' }

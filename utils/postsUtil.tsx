@@ -9,16 +9,17 @@ export interface PostData {
 	title: string;
 	slug: string;
 	author: string;
-    date: string; // Use Date type if you want to work with Date objects
-    is_featured: boolean;
-	featured_img?: string; // Optional
+	date: string; // Use Date type if you want to work with Date objects
+	is_featured: boolean;
+	featured_img: string; // Optional
 	body: string; // The actual content of the post
 }
 
-const postsDirectory = path.join(process.cwd(), 'content/posts');
+const postsDirectory = path.join(process.cwd(), '/public/content/posts');
 
 export function getSortedPostsData(): PostData[] {
 	const fileNames = fs.readdirSync(postsDirectory);
+
 	const allPostsData: PostData[] = fileNames.map((fileName) => {
 		const slug = fileName.replace(/\.md$/, '');
 		const fullPath = path.join(postsDirectory, fileName);

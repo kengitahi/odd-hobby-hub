@@ -21,7 +21,7 @@ export const metadata = {
 export async function generateStaticParams() {
 	const posts = getAllPostIds(); // Assuming this returns an array of slugs
 	return posts.map((post) => ({
-		slug: post.params.slug, // Adapt this based on the structure of your getAllPostIds return
+		slug: post.params.slug,
 	}));
 }
 

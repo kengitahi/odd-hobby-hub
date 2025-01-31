@@ -3,6 +3,7 @@ layout: posts
 title: Donec pede justo fringilla
 author: Hobbies Hub
 date: 2025-01-30
+category: Wild West
 is_featured: false
 featured_img: /uploads/mainstreet-digital.webp
 ---

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 
 import { PostData } from '@/utils/postsUtil';
+import formatDate from '@/utils/postDate';
 
 /**
  * Our PostCard is a reusable UI component used to display a post as a card format.
@@ -13,20 +14,6 @@ import { PostData } from '@/utils/postsUtil';
  */
 
 const PostCard = ({ post }: { post: PostData }) => {
-	const formatDate = (date: string) => {
-		const dateObj = new Date(date);
-		const monthAndYear = dateObj.toLocaleDateString('en-GB', {
-			month: 'long',
-			year: 'numeric',
-		});
-
-		const day = dateObj.toLocaleDateString('en-GB', {
-			day: 'numeric',
-		});
-
-		return `${day} ${monthAndYear.replace(' ', ', ')}`;
-	};
-
 	return (
 		<div className='p-4 rounded-xl border card w-fit border-base-content/10 font-work'>
 			<figure>
@@ -41,9 +28,9 @@ const PostCard = ({ post }: { post: PostData }) => {
 				</Link>
 			</figure>
 			<div className='px-2 py-6 card-body'>
-				<span className='px-3 py-2 text-sm font-medium capitalize rounded-md border-0 btn no-animation hover:bg-primary hover:text-primary-content bg-primary/5 text-primary min-h-fit h-fit w-fit'>
+				<div className='w-fit text-primary-content px-2.5 py-1 bg-primary text-xs md:text-sm rounded-md mb-4 font-medium'>
 					{post.category ?? 'History'}
-				</span>
+				</div>
 				<h3>
 					<Link
 						href={`/posts/${post.slug}`}
@@ -69,7 +56,7 @@ const PostCard = ({ post }: { post: PostData }) => {
 								href='/author'
 								className='text-base font-medium transition hover:text-primary hover:duration-300'
 							>
-								{post.author ?? 'Hobbies Hub'}
+								{post.author}
 							</Link>
 						</h5>
 					</div>

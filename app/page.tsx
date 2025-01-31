@@ -3,7 +3,7 @@ import BannerCard from '@/components/molecules/card/BannerCard';
 import PostCard from '@/components/molecules/card/PostCard';
 import Link from 'next/link';
 
-import { PostData, getSortedPostsData } from '@/utils/postsUtil';
+import { PostData, getLatestFeaturedPost, getSortedPostsData } from '@/utils/postsUtil';
 
 export const metadata = {
 	title: 'Home Page | MetaBlog',
@@ -20,13 +20,14 @@ export const metadata = {
 // };
 
 export default async function Home() {
+	const featuredPost: PostData = getLatestFeaturedPost();
 	const posts: PostData[] = getSortedPostsData();
 
 	return (
 		<main className='container mx-auto'>
 			{/* Banner Component */}
 			<section>
-				<BannerCard />
+				<BannerCard post={featuredPost} />
 			</section>
 
 			{/* Advertisement Component */}

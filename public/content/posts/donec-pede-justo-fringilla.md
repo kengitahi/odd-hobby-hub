@@ -4,7 +4,7 @@ title: Donec pede justo fringilla
 author: Hobbies Hub
 date: 2025-01-30
 category: Wild West
-is_featured: false
+is_featured: true
 featured_img: /uploads/mainstreet-digital.webp
 ---
  Vivamus aliquet elit ac nisl. Curabitur turpis.. Nunc interdum lacus sit amet orci.

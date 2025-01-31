@@ -18,6 +18,39 @@ export interface PostData {
 
 const postsDirectory = path.join(process.cwd(), '/public/content/posts');
 
+export function getLatestFeaturedPost(): PostData {
+	// Get files from the posts directory
+	const fileNames = fs.readdirSync(postsDirectory);
+
+	// Get all posts data and filter for featured posts
+	const allPosts = fileNames
+		.map((fileName) => {
+			// Remove ".md" from file name to get slug
+			const slug = fileName.replace(/\.md$/, '');
+
+			// Read markdown file as string
+			const fullPath = path.join(postsDirectory, fileName);
+			const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+			// Use gray-matter to parse the post metadata
+			const { data } = matter(fileContents);
+
+			return {
+				...(data as Omit<PostData, 'slug'>),
+				slug,
+			};
+		})
+		.filter((post) => post.is_featured);
+
+	// Sort posts by date in descending order
+	const sortedPosts = allPosts.sort(
+		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+	);
+
+	// Return the first (latest) featured post or null if none exists
+	return sortedPosts[0] || null;
+}
+
 export function getSortedPostsData(): PostData[] {
 	const fileNames = fs.readdirSync(postsDirectory);
 

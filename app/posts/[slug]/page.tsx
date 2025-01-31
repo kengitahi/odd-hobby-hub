@@ -5,9 +5,12 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 import { getPostData, getAllPostIds, PostData } from '@/utils/postsUtil'; // Import the utility functions
-import { GetStaticPaths, GetStaticProps } from 'next';
 import formatDate from '@/utils/postDate';
 import { redirect } from 'next/navigation';
+
+interface PostPageProps {
+	params: { slug: string };
+}
 
 export const metadata = {
 	title: 'Single Post Page | MetaBlog',
@@ -22,22 +25,19 @@ export async function generateStaticParams() {
 	}));
 }
 
-function fetchPostData(slug: string): PostData | null {
+async function fetchPostData(slug: string): Promise<PostData | null> {
 	const post = getPostData(slug);
 	return post || null; // Return null if post not found
 }
 
-export default async function SinglePost({
-	params,
-}: {
-	params: { slug: string };
-}) {
-	const post = fetchPostData(params?.slug as string);
+export default async function SinglePost({ params }: PostPageProps) {
+	const post = await fetchPostData(params.slug);
 
 	if (!post) {
 		// Handle the case where the post is not found.  You can either:
 		// 1. Redirect:
-		redirect('/404'); // Requires 'next/navigation'
+		redirect('/404');
+		return null;
 		// 2. Return a 404 component:
 		//return <div>Post not found</div>; // Or a more styled 404 page
 		// 3. Throw an error (less common for not found):

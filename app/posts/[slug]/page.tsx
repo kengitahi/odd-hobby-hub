@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 	}));
 }
 
-async function fetchPostData(slug: string): Promise<PostData | null> {
+function fetchPostData(slug: string): PostData | null {
 	const post = getPostData(slug);
 	return post || null; // Return null if post not found
 }
@@ -32,7 +32,7 @@ export default async function SinglePost({
 }: {
 	params: { slug: string };
 }) {
-	const post = await fetchPostData(params?.slug as string);
+	const post = fetchPostData(params?.slug as string);
 
 	if (!post) {
 		// Handle the case where the post is not found.  You can either:

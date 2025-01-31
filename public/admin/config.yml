@@ -37,6 +37,15 @@ collections:
                 date_format: 'YYYY-MM-DD',
             }
           - {
+                name: 'category',
+                label: 'Category',
+                widget: 'relation',
+                collection: 'categories',
+                search_fields: ['category_name'],
+                value_field: 'category_slug',
+                display_fields: ['category_name'],
+            }
+          - {
                 label: 'Featured? (Choose to make featured)',
                 name: 'is_featured',
                 widget: 'boolean',
@@ -51,3 +60,10 @@ collections:
                 default: '/uploads/image-not-found.jpg',
             }
           - { name: 'body', label: 'Body', widget: 'markdown' }
+    - name: 'categories'
+      label: 'Categories'
+      folder: 'public/content/categories'
+      create: true
+      fields:
+          - { name: 'category_name', label: 'Category Name', widget: 'string' }
+          - { name: 'category_slug', label: 'Category Slug', widget: 'string' }

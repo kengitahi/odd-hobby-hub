@@ -42,11 +42,11 @@ const PostCard = ({ post }: { post: PostData }) => {
 			</figure>
 			<div className='px-2 py-6 card-body'>
 				<span className='px-3 py-2 text-sm font-medium capitalize rounded-md border-0 btn no-animation hover:bg-primary hover:text-primary-content bg-primary/5 text-primary min-h-fit h-fit w-fit'>
-					Technology
+					{post.category ?? 'History'}
 				</span>
 				<h3>
 					<Link
-						href='/single-post'
+						href={`/posts/${post.slug}`}
 						className='mt-2 text-lg font-semibold transition-all duration-300 ease-in-out text-base-content hover:text-primary md:text-xl lg:text-2xl'
 					>
 						{post.title}

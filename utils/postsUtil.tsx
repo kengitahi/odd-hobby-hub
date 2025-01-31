@@ -10,6 +10,7 @@ export interface PostData {
 	slug: string;
 	author: string;
 	date: string; // Use Date type if you want to work with Date objects
+	category: string;
 	is_featured: boolean;
 	featured_img: string; // Optional
 	body: string; // The actual content of the post

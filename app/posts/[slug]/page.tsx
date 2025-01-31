@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 	}));
 }
 
-async function fetchPostData(slug: string): Promise<PostData | null> {
+async function fetchPostData(slug: string) {
 	const post = getPostData(slug);
 	return post || null; // Return null if post not found
 }

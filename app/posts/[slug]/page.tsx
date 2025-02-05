@@ -25,7 +25,7 @@ export async function generateStaticParams() {
 
 async function fetchPostData(slug: string) {
 	const post = getPostData(slug);
-	return post || null; // Return null if post not found
+	return post || null; // get the post or Return null if post not found
 }
 
 export default async function SinglePost({ params }: { params: Params }) {

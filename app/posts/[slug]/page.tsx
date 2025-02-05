@@ -8,9 +8,7 @@ import { getPostData, getAllPostIds, PostData } from '@/utils/postsUtil'; // Imp
 import formatDate from '@/utils/postDate';
 import { redirect } from 'next/navigation';
 
-interface PostPageProps {
-	params: { slug: string };
-}
+type Params = Promise<{ slug: string }>;
 
 export const metadata = {
 	title: 'Single Post Page | MetaBlog',
@@ -30,8 +28,9 @@ async function fetchPostData(slug: string) {
 	return post || null; // Return null if post not found
 }
 
-export default async function SinglePost({ params }: PostPageProps) {
-	const post = await fetchPostData(params.slug);
+export default async function SinglePost({ params }: { params: Params }) {
+	const { slug } = await params;
+	const post = await fetchPostData(slug);
 
 	if (!post) {
 		// Handle the case where the post is not found.  You can either:

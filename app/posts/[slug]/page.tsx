@@ -91,7 +91,7 @@ export default async function SinglePost({ params }: { params: Params }) {
 					{/* article section start  */}
 					<div className='font-serif'>
 						<div className='mt-8'>
-							<Markdown remarkPlugins={[remarkGfm]}>
+							<Markdown remarkPlugins={[remarkGfm] as any}>
 								{post.body}
 							</Markdown>
 						</div>

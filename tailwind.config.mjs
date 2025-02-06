@@ -21,8 +21,11 @@ export default {
     },
   },
 
-  // add daisyUI plugin
-  plugins: [require('daisyui')],
+  // add daisyUI and tailwinf typography plugins
+  plugins: [
+    require('daisyui'),
+    require('@tailwindcss/typography'),
+  ],
 
   // daisyUI config (optional)
   daisyui: {

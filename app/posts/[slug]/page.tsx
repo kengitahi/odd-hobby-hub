@@ -4,6 +4,10 @@ import React from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+import remarkRehype from 'remark-rehype';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
+
 import { getPostData, getAllPostIds, PostData } from '@/utils/postsUtil'; // Import the utility functions
 import formatDate from '@/utils/postDate';
 import { redirect } from 'next/navigation';
@@ -90,8 +94,38 @@ export default async function SinglePost({ params }: { params: Params }) {
 
 					{/* article section start  */}
 					<div className='font-serif'>
-						<div className='mt-8'>
-							<Markdown remarkPlugins={[remarkGfm] as any}>
+						<div className='mt-8 prose'>
+							<Markdown
+								remarkPlugins={[
+									remarkGfm,
+									remarkRehype,
+									rehypeRaw,
+								]}
+								rehypePlugins={[rehypeSanitize]}
+								components={{
+									h2: ({ children }) => (
+										<h2
+											className={`mt-4 text-2xl font-semibold leading-7 text-base-content`}
+										>
+											{children}
+										</h2>
+									),
+									h3: ({ children }) => (
+										<h3
+											className={`mt-4 text-xl font-semibold leading-6 text-base-content`}
+										>
+											{children}
+										</h3>
+									),
+									p: ({ children }) => (
+										<p
+											className={`text-lg leading-8 text-base-content/80 mb-4`}
+										>
+											{children}
+										</p>
+									),
+								}}
+							>
 								{post.body}
 							</Markdown>
 						</div>

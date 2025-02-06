@@ -97,9 +97,9 @@ export default async function SinglePost({ params }: { params: Params }) {
 						<div className='mt-8 prose'>
 							<Markdown
 								remarkPlugins={[
-									remarkGfm,
-									remarkRehype,
-									rehypeRaw,
+									remarkGfm as any,
+									remarkRehype as any,
+									rehypeRaw as any,
 								]}
 								rehypePlugins={[rehypeSanitize]}
 								components={{
